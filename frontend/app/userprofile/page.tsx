@@ -1,7 +1,6 @@
 'use client'
 
 import { useWallet } from '../../components/WalletContext'
-import { useState } from 'react'
 
 import Button from '@mui/material/Button'
 import EditIcon from '@mui/icons-material/Edit'
@@ -9,11 +8,13 @@ import EditIcon from '@mui/icons-material/Edit'
 import ProfileView from '@/app/userprofile/profileview'
 import ProfileEditView from '@/app/userprofile/editprofile'
 
-import { User, UserApi } from '@/lib/types/User'
+import { useProfileView } from '@/components/UserProfileContext'
+
+import { User, UserApi } from '@/lib/types/Types'
 
 export default function UserProfilePage() {
   const { address } = useWallet()
-  const [isInEditMode, setEditMode] = useState(false)
+  const { isInEditMode, setEditMode } = useProfileView()
   const user = {
     username: 'Edward Newgate',
     bio: `Writing code by day, singing in the shower by night. Occasionally

@@ -1,6 +1,6 @@
 'use client'
 
-import { User } from '@/lib/types/User'
+import { User } from '@/lib/types/Types'
 
 export default function ProfileView(props: { user: User }) {
   const { username, bio, profilePicUrl, address } = props.user as User

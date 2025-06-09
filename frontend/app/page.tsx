@@ -81,6 +81,10 @@ export default function Home() {
     router.push('/')
   }
 
+  const goToFeed = () => {
+    router.push('/feed')
+  }
+
   return (
     <main>
       <div className='w-screen h-screen flex p-2 box-border justify-center'>

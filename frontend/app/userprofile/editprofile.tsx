@@ -1,6 +1,8 @@
 'use client'
 
-import { UserApi } from '@/lib/types/User'
+import { useProfileView } from '@/components/UserProfileContext'
+
+import { UserApi } from '@/lib/types/Types'
 
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -8,6 +10,7 @@ import TextField from '@mui/material/TextField'
 import { Dispatch, SetStateAction, useState } from 'react'
 
 export default function ProfileEditView(props: { userApi: UserApi }) {
+  const { setEditMode } = useProfileView()
   const { user, updateUser } = props.userApi as UserApi
   const [imageLoaded, setImageLoaded] = useState(
     'https://i.postimg.cc/MTvMpqZ0/demoimage.avif'
@@ -47,13 +50,17 @@ export default function ProfileEditView(props: { userApi: UserApi }) {
       <div className='flex gap-2'>
         <Button
           className='border-purple-400 text-white bg-purple-500 cursor-pointer w-[80px]'
-          onClick={() => {}}
+          onClick={() => {
+            setEditMode(false)
+          }}
         >
           Done
         </Button>
         <Button
           className='border-purple-400 text-purple-500 cursor-pointer w-[80px]'
-          onClick={() => {}}
+          onClick={() => {
+            setEditMode(false)
+          }}
           variant='outlined'
         >
           Cancel
