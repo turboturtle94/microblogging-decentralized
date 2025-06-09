@@ -4,19 +4,22 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { headers } from "next/headers";
 
 import Providers from "../components/Providers";
+import { WalletProvider } from '../components/WalletContext'
 
 export default async function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const appHeader = await headers();
-  const cookie = appHeader.get("cookie") || "";
+  const appHeader = await headers()
+  const cookie = appHeader.get('cookie') || ''
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
-        <Providers cookie={cookie}>{children}</Providers>
+        <Providers cookie={cookie}>
+          <WalletProvider>{children}</WalletProvider>
+        </Providers>
       </body>
     </html>
-  );
+  )
 }
