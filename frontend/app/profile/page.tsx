@@ -1,12 +1,12 @@
 'use client'
 
-import { useWallet } from '../../components/WalletContext'
+import { useWallet } from '@/components/WalletContext'
 
 import Button from '@mui/material/Button'
 import EditIcon from '@mui/icons-material/Edit'
 
-import ProfileView from '@/app/userprofile/profileview'
-import ProfileEditView from '@/app/userprofile/editprofile'
+import ProfileView from '@/components/ProfileViewer'
+import ProfileEditView from '@/components/ProfileEditor'
 
 import { useProfileView } from '@/components/UserProfileContext'
 

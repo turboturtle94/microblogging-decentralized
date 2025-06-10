@@ -12,11 +12,11 @@ export interface UserApi {
 
 export interface Comment {
   useraddress: string
-  timestamp: Date
+  timestamp: string
   content: string
 }
 export interface Post {
-  timestamp: Date
+  timestamp: string
   title: string
   content: string
   useraddress: string

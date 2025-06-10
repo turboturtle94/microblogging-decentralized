@@ -7,7 +7,7 @@ import { UserApi } from '@/lib/types/Types'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 export default function ProfileEditView(props: { userApi: UserApi }) {
   const { setEditMode } = useProfileView()

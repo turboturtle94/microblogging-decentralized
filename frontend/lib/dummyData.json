@@ -1,82 +1,123 @@
 [
   {
     "timestamp": "2025-06-09T08:00:00Z",
-    "title": "Hello Blockchain!",
-    "content": "Just deployed my first smart contract 🧠🚀",
-    "useraddress": "0xAb1234567890abcdEf1234567890ABcDEF123456",
+    "title": "First Post",
+    "content": "Excited to start my microblogging journey!",
+    "useraddress": "0x1234...abcd",
+    "hasUserLiked": false,
+    "comments": [
+      {
+        "useraddress": "0x5678...efgh",
+        "timestamp": "2025-06-09T09:00:00Z",
+        "content": "Welcome aboard! 🚀"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-06-08T14:30:00Z",
+    "title": "Coffee + Code",
+    "content": "Why does my best code come after my 3rd cup of coffee?",
+    "useraddress": "0x2222...aaaa",
+    "hasUserLiked": true,
+    "comments": [
+      {
+        "useraddress": "0x9999...bbbb",
+        "timestamp": "2025-06-08T15:00:00Z",
+        "content": "Because caffeine == creativity! ☕️"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-06-07T10:15:00Z",
+    "title": "Bug or Feature?",
+    "content": "If it works, does it still count as a bug?",
+    "useraddress": "0x8888...cccc",
     "hasUserLiked": false,
     "comments": []
   },
   {
-    "timestamp": "2025-06-08T16:30:00Z",
-    "title": "GM frens",
-    "content": "Woke up, sipped chai, and checked gas fees. Typical dev morning.",
-    "useraddress": "0xCD1234567890abcdEf1234567890ABcDEF123456",
+    "timestamp": "2025-06-07T17:45:00Z",
+    "title": "Frontend Fridays",
+    "content": "Refactoring CSS feels like therapy sometimes.",
+    "useraddress": "0x7777...dddd",
+    "hasUserLiked": true,
+    "comments": [
+      {
+        "useraddress": "0xaaaa...eeee",
+        "timestamp": "2025-06-07T18:00:00Z",
+        "content": "Until you touch Flexbox 😅"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-06-06T13:00:00Z",
+    "title": "Weekend Plans",
+    "content": "Planning to paint and avoid all code for 48 hours!",
+    "useraddress": "0x1111...ffff",
+    "hasUserLiked": false,
+    "comments": []
+  },
+  {
+    "timestamp": "2025-06-05T09:20:00Z",
+    "title": "Deployment Struggles",
+    "content": "It worked locally. Now production says no.",
+    "useraddress": "0x3333...aaaa",
+    "hasUserLiked": true,
+    "comments": [
+      {
+        "useraddress": "0x5555...bbbb",
+        "timestamp": "2025-06-05T10:00:00Z",
+        "content": "Classic dev life 😂"
+      },
+      {
+        "useraddress": "0x6666...cccc",
+        "timestamp": "2025-06-05T10:05:00Z",
+        "content": "Check your environment vars maybe?"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-06-04T11:00:00Z",
+    "title": "Hot Reload",
+    "content": "Bless the soul who invented hot reloading.",
+    "useraddress": "0x7777...dddd",
     "hasUserLiked": true,
     "comments": []
   },
   {
-    "timestamp": "2025-06-07T22:15:00Z",
-    "title": "Bugged out 🐞",
-    "content": "Spent 3 hours debugging an issue caused by a missing semicolon. Send help.",
-    "useraddress": "0xEF1234567890abcdEf1234567890ABcDEF123456",
-    "hasUserLiked": false,
-    "comments": []
-  },
-  {
-    "timestamp": "2025-06-06T11:05:00Z",
-    "title": "Dark mode supremacy",
-    "content": "If your app doesn’t have dark mode, does it even exist?",
-    "useraddress": "0xBE1234567890abcdEf1234567890ABcDEF123456",
+    "timestamp": "2025-06-03T20:45:00Z",
+    "title": "Hackathon Mode",
+    "content": "Running on Red Bull and React ⚛️",
+    "useraddress": "0x8888...eeee",
     "hasUserLiked": true,
-    "comments": []
+    "comments": [
+      {
+        "useraddress": "0x9999...ffff",
+        "timestamp": "2025-06-03T21:10:00Z",
+        "content": "Hope you're also pushing to Git!"
+      }
+    ]
   },
   {
-    "timestamp": "2025-06-06T07:20:00Z",
-    "title": "Throwback Thursday",
-    "content": "Remember when we used jQuery for *everything*?",
-    "useraddress": "0xAD1234567890abcdEf1234567890ABcDEF123456",
+    "timestamp": "2025-06-02T07:50:00Z",
+    "title": "Design Matters",
+    "content": "Making UIs pop is harder than it looks.",
+    "useraddress": "0xaaaa...9999",
     "hasUserLiked": false,
     "comments": []
   },
   {
-    "timestamp": "2025-06-05T18:45:00Z",
-    "title": "Gasless days",
-    "content": "Dreaming of a world where transactions cost nothing 😩",
-    "useraddress": "0xFA1234567890abcdEf1234567890ABcDEF123456",
+    "timestamp": "2025-06-01T19:00:00Z",
+    "title": "One More Fix",
+    "content": "Final commit… until the next bug shows up.",
+    "useraddress": "0xbbbb...cccc",
     "hasUserLiked": true,
-    "comments": []
-  },
-  {
-    "timestamp": "2025-06-04T13:10:00Z",
-    "title": "Late night commits",
-    "content": "Pushed code at 3 AM. Hope it works in the morning 🤞",
-    "useraddress": "0xDE1234567890abcdEf1234567890ABcDEF123456",
-    "hasUserLiked": false,
-    "comments": []
-  },
-  {
-    "timestamp": "2025-06-04T09:30:00Z",
-    "title": "Profile pic updated!",
-    "content": "Finally found a picture where I don’t look like I just debugged for 5 hours.",
-    "useraddress": "0xCC1234567890abcdEf1234567890ABcDEF123456",
-    "hasUserLiked": false,
-    "comments": []
-  },
-  {
-    "timestamp": "2025-06-03T15:00:00Z",
-    "title": "Tip of the Day 💡",
-    "content": "Always lint before you push. Your team will thank you.",
-    "useraddress": "0xAA1234567890abcdEf1234567890ABcDEF123456",
-    "hasUserLiked": true,
-    "comments": []
-  },
-  {
-    "timestamp": "2025-06-02T21:30:00Z",
-    "title": "ZK what?",
-    "content": "Diving into zero-knowledge proofs and my brain is doing gymnastics.",
-    "useraddress": "0xBB1234567890abcdEf1234567890ABcDEF123456",
-    "hasUserLiked": false,
-    "comments": []
+    "comments": [
+      {
+        "useraddress": "0xcccc...dddd",
+        "timestamp": "2025-06-01T19:30:00Z",
+        "content": "Famous last words 😬"
+      }
+    ]
   }
 ]
