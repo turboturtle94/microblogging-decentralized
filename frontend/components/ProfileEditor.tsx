@@ -1,67 +1,93 @@
 'use client'
 
 import { useProfileView } from '@/components/UserProfileContext'
-
-import { UserApi } from '@/lib/types/Types'
+import { User, UserApi } from '@/lib/types/Types'
 
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import axios from 'axios'
 
 export default function ProfileEditView(props: { userApi: UserApi }) {
-  const { setEditMode } = useProfileView()
-  const { user, updateUser } = props.userApi as UserApi
-  const [imageLoaded, setImageLoaded] = useState(
-    'https://i.postimg.cc/MTvMpqZ0/demoimage.avif'
-  )
+  const { user, updateUser } = props.userApi
+  const [userData, setUserData] = useState(user as User)
+  const [imageLoaded, setImageLoaded] = useState(user.profilePicUrl || '')
+  useEffect(() => {
+    setUserData(user)
+    setImageLoaded(user.profilePicUrl)
+  }, [user])
+  const update = async () => {
+    try {
+      await axios.post(`http://localhost:3001/users/`, {
+        username: userData.username,
+        bio: userData.bio,
+        profile_pic_url: userData.profilePicUrl,
+        wallet_address: userData.walletAddress
+      })
+    } catch (err) {
+      console.error('Error updating user', err)
+      alert('Profile update failed!')
+    }
+  }
   return (
-    <div className='flex flex-col gap-5 bg-purple-50 w-[80%] h-[80%] rounded-lg p-10 overflow-y-auto'>
+    <div className='flex flex-col gap-5 bg-purple-50 w-full rounded-lg p-6 sm:p-10 shadow-md'>
       <TextField
         label='Username'
-        defaultValue={user.username}
+        value={userData.username}
         required
-        className='border-purple-400 bg-white'
-      ></TextField>
+        fullWidth
+        className='bg-white'
+        onChange={(e) => {
+          setUserData({
+            ...userData,
+            username: e.target.value
+          })
+        }}
+      />
       <TextField
         label='Bio'
-        defaultValue={user.bio}
+        value={userData.bio}
         multiline
         rows={5}
         required
-        className='border-purple-400 bg-white'
-      ></TextField>
+        fullWidth
+        className='bg-white'
+        onChange={(e) => {
+          setUserData({
+            ...userData,
+            bio: e.target.value
+          })
+        }}
+      />
       <TextField
         label='Profile pic'
-        defaultValue={imageLoaded}
+        value={imageLoaded}
         onChange={(e) => {
+          setUserData({
+            ...userData,
+            profilePicUrl: e.target.value
+          })
           setImageLoaded(e.target.value)
         }}
-        className='border-purple-400 bg-white'
-      ></TextField>
-      {imageLoaded && (
-        <div className='w-1/2 h-full relative overflow-hidden'>
-          <img
-            src={imageLoaded}
-            className='w-full h-full object-cover object-top'
-          ></img>
-        </div>
-      )}
-      <div className='flex gap-2'>
+        fullWidth
+        className='bg-white'
+      />
+      <div className='flex gap-2 mt-4'>
         <Button
-          className='border-purple-400 text-white bg-purple-500 cursor-pointer w-[80px]'
-          onClick={() => {
-            setEditMode(false)
+          variant='contained'
+          className='bg-purple-500 text-white'
+          onClick={async () => {
+            await update()
+            updateUser(userData)
           }}
         >
           Done
         </Button>
         <Button
-          className='border-purple-400 text-purple-500 cursor-pointer w-[80px]'
-          onClick={() => {
-            setEditMode(false)
-          }}
           variant='outlined'
+          className='text-purple-500 border-purple-500'
         >
           Cancel
         </Button>

@@ -1,28 +1,41 @@
-'use client';
+'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
+// Helper to read cookie value
+function getCookieValue(name: string): string | undefined {
+  const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+  return match?.[2]
+}
 
-const WalletContext = createContext<{ address: string | undefined }>({
-  address: undefined,
-});
+const WalletContext = createContext<{
+  walletAddress: string | undefined
+  setWalletAddress: (address: string | undefined) => void
+}>({
+  walletAddress: undefined,
+  setWalletAddress: () => {}
+})
 
 export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
-  const { address } = useAccount();
-  const [walletAddress, setWalletAddress] = useState<string | undefined>();
+  const [walletAddress, setWalletAddressState] = useState<string | undefined>()
 
+  // Load from cookie on mount
   useEffect(() => {
-    if (address) {
-      setWalletAddress(address);
+    const cookieAddress = getCookieValue('jwt')
+    if (cookieAddress) {
+      setWalletAddressState(cookieAddress)
     }
-  }, [address]);
+  }, [])
+
+  const setWalletAddress = (address: string | undefined) => {
+    setWalletAddressState(address)
+  }
 
   return (
-    <WalletContext.Provider value={{ address: walletAddress }}>
+    <WalletContext.Provider value={{ walletAddress, setWalletAddress }}>
       {children}
     </WalletContext.Provider>
-  );
-};
+  )
+}
 
-export const useWallet = () => useContext(WalletContext);
+export const useWallet = () => useContext(WalletContext)

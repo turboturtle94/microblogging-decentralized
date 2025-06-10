@@ -8,9 +8,12 @@ import { useRouter } from 'next/navigation'
 
 import Button from '@mui/material/Button'
 
+import axios from 'axios'
+import { useWallet } from '@/components/WalletContext'
+
 export default function Login() {
   const router = useRouter()
-
+  const { walletAddress, setWalletAddress } = useWallet()
   const { isConnected, address } = useAccount()
   const { signMessageAsync } = useSignMessage()
 
@@ -25,7 +28,7 @@ export default function Login() {
   const getLoginStatus = () => {
     if (!isConnected) {
       return 1
-    } else if (isConnected && !jwt) {
+    } else if (isConnected && !walletAddress) {
       return 2
     } else {
       return 3
@@ -60,17 +63,48 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      const message = `Login to Microblogger with address: ${address}`
       const signature = await signMessageAsync({
-        message: `Login to Microblogger with address: ${address}`
+        message
       })
-      if (true) {
-        document.cookie = `jwt=${'some-random-token'}; path=/; max-age=3600` // expires in 1 hour
+
+      const response = await axios.post('http://localhost:3001/auth/verify', {
+        address,
+        signature,
+        message
+      })
+      const { address: token } = response.data
+      if (token) {
+        document.cookie = `jwt=${token}; path=/; max-age=3600` // expires in 1 hour
         setLoginStatus(3)
+        setWalletAddress(token)
+        await createUserData(token)
       } else {
         setLoginStatus(1)
-        setJwt(null)
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(JSON.stringify(error))
+      alert('Login failed!')
+    }
+  }
+
+  const createUserData = async (address: string) => {
+    try {
+      await axios.get(`http://localhost:3001/users/${address}`)
+    } catch (err: any) {
+      if (err.response?.status === 404) {
+        // 3. Create new user
+        console.log('User does not exist. Creating...')
+        await axios.post('http://localhost:3001/users', {
+          wallet_address: address,
+          username: 'Anonymous',
+          bio: 'Hey there! 🚀 Your profile’s looking great, but it needs a little *you*.✨ Tell the world a bit about yourself—go ahead and update your bio!✨ Tell the world a bit about yourself—go ahead and update your bio!',
+          profile_pic_url: ''
+        })
+      } else {
+        throw err // Other errors
+      }
+    }
   }
 
   const goToLogin = () => {

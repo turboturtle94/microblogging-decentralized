@@ -1,6 +1,6 @@
 export interface User {
   username: string
-  address: string
+  walletAddress: string
   bio: string
   profilePicUrl: string
 }
