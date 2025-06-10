@@ -14,6 +14,7 @@ export interface Comment {
   useraddress: string
   timestamp: string
   content: string
+  user: User
 }
 export interface Post {
   id: number

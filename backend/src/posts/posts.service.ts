@@ -27,8 +27,11 @@ export class PostsService {
     });
   }
 
-  findOne(id: number) {
-    return this.postsRepository.findOne({ where: { id }, relations: ["user"] });
+  async findOne(id: number) {
+    return this.postsRepository.findOne({
+      where: { id },
+      relations: ["user", "comments", "comments.user"],
+    });
   }
 
   update(id: number, updatePostDto: any) {

@@ -1,6 +1,7 @@
 // src/users/user.entity.ts
 import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
 import { Posts } from "../posts/post.entity";
+import { Comments } from "../comments/comment.entity";
 
 @Entity()
 export class Users {
@@ -18,4 +19,7 @@ export class Users {
 
   @OneToMany(() => Posts, (post) => post.user)
   posts: Posts[];
+
+  @OneToMany(() => Comments, (comment) => comment.user)
+  comments: Comments[];
 }
