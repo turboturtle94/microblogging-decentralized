@@ -16,10 +16,12 @@ export interface Comment {
   content: string
 }
 export interface Post {
+  id: number
   timestamp: string
   title: string
   content: string
   useraddress: string
   hasUserLiked: boolean
   comments: Array<Comment>
+  user: User
 }

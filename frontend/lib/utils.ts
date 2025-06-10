@@ -16,3 +16,18 @@ export function snakeToCamel(input: any): any {
   }
   return input
 }
+
+export function formatTimestamp(timestamp: string): string {
+  const date = new Date(timestamp)
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long', // e.g., March
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }
+
+  return new Intl.DateTimeFormat('en-US', options).format(date)
+}

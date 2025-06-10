@@ -1,11 +1,13 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+// src/users/user.entity.ts
+import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import { Posts } from "../posts/post.entity";
 
 @Entity()
 export class Users {
   @PrimaryColumn()
   wallet_address: string;
 
-  @Column({ nullable: true })
+  @Column()
   username: string;
 
   @Column({ nullable: true })
@@ -13,4 +15,7 @@ export class Users {
 
   @Column({ nullable: true })
   profile_pic_url: string;
+
+  @OneToMany(() => Posts, (post) => post.user)
+  posts: Posts[];
 }
