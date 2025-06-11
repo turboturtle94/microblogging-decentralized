@@ -1,12 +1,7 @@
-# microblogging-decentralized
-
-The Arena assignment
-
-# Decentralized Social Media MVP
 
 ## Overview
 
-A decentralized microblogging platform using Ethereum wallet for login.
+The microblogger is your place for freedom of thought powered by Web3
 
 ## Tech Stack
 
@@ -22,10 +17,7 @@ _Coming Soon_
 
 - Ethereum Wallet Login
 - Profile Creation
-- Posting, Liking, Commenting
+- Posting and Commenting
+- Liking a post is yet to be implemented
 
-## Status
 
-- ⬜ Planning
-- ⬜ Frontend Setup
-- ⬜ Backend Setup
