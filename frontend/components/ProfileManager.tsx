@@ -7,7 +7,7 @@ import { User } from '@/lib/types/Types'
 import { useEffect, useState } from 'react'
 import { useProfileView } from '@/components/UserProfileContext'
 
-export default async function ProfileManager() {
+export default function ProfileManager() {
   const { userProfile } = useProfileView()
   const [user, setUser] = useState<User>({
     username: '',
