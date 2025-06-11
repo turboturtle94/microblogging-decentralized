@@ -1,7 +1,6 @@
 'use client'
 
 import { useWallet } from '@/components/WalletContext'
-import { useProfileView } from '@/components/UserProfileContext'
 
 import ProfileView from '@/components/ProfileViewer'
 import ProfileEditView from '@/components/ProfileEditor'
@@ -10,9 +9,10 @@ import { User, UserApi } from '@/lib/types/Types'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { snakeToCamel } from '@/lib/utils'
+import { useProfileView } from '@/components/UserProfileContext'
 
 export default function UserProfilePage() {
-  const { walletAddress } = useWallet()
+  const { userProfile } = useProfileView()
   const [user, setUser] = useState<User>({
     username: '',
     walletAddress: '',
@@ -21,23 +21,8 @@ export default function UserProfilePage() {
   })
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/users/${walletAddress}`
-        )
-        const userData = snakeToCamel(response.data)
-        setUser(userData)
-      } catch (err) {
-        console.error('Failed to load profile', err)
-        alert('Failed to load user profile!')
-      }
-    }
-
-    if (walletAddress) {
-      fetchUserData()
-    }
-  }, [walletAddress])
+    setUser({ ...userProfile })
+  }, [userProfile])
 
   return (
     <main className='w-full min-h-screen bg-purple-100 flex flex-col items-center p-4 sm:p-10'>

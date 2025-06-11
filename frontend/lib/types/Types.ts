@@ -11,18 +11,17 @@ export interface UserApi {
 }
 
 export interface Comment {
-  useraddress: string
+  walletAddress: string
   timestamp: string
   content: string
   user: User
+  postId: number
+  id: number
 }
 export interface Post {
   id: number
   timestamp: string
-  title: string
   content: string
-  useraddress: string
-  hasUserLiked: boolean
   comments: Array<Comment>
   user: User
 }

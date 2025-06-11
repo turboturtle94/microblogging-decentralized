@@ -2,7 +2,7 @@
 
 import { Post } from '@/lib/types/Types'
 import { useWallet } from '@/components/WalletContext'
-import PostCard from '@/components/Post'
+import PostCard from '@/components/PostCard'
 
 import { useEffect, useState, KeyboardEvent } from 'react'
 import axios from 'axios'

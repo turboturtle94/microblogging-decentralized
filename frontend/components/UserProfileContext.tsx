@@ -1,21 +1,44 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
-const ProfileViewContext = createContext<any>(null)
+import { useWallet } from '@/components/WalletContext'
 
-export const useProfileView = () => useContext(ProfileViewContext)
+import axios from 'axios'
 
-export function ProfileViewProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  const [isInEditMode, setEditMode] = useState<boolean>(false)
+import { snakeToCamel } from '@/lib/utils'
+import { User } from '@/lib/types/Types'
+
+const ProfileContext = createContext<any>(null)
+
+export const useProfileView = () => useContext(ProfileContext)
+
+export function ProfileProvider({ children }: { children: React.ReactNode }) {
+  const { walletAddress } = useWallet()
+  const [userProfile, setUserProfile] = useState<User>()
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/users/${walletAddress}`
+        )
+        const userData = snakeToCamel(response.data)
+        setUserProfile(userData)
+      } catch (err) {
+        console.error('Failed to load profile', err)
+        alert('Failed to load user profile!')
+      }
+    }
+
+    if (walletAddress) {
+      fetchUserData()
+    }
+  }, [walletAddress])
 
   return (
-    <ProfileViewContext.Provider value={{ isInEditMode, setEditMode }}>
+    <ProfileContext.Provider value={{ userProfile, setUserProfile }}>
       {children}
-    </ProfileViewContext.Provider>
+    </ProfileContext.Provider>
   )
 }

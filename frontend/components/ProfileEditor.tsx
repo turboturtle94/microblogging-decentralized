@@ -1,6 +1,5 @@
 'use client'
 
-import { useProfileView } from '@/components/UserProfileContext'
 import { User, UserApi } from '@/lib/types/Types'
 
 import Button from '@mui/material/Button'
@@ -12,7 +11,12 @@ import axios from 'axios'
 
 export default function ProfileEditView(props: { userApi: UserApi }) {
   const { user, updateUser } = props.userApi
-  const [userData, setUserData] = useState(user as User)
+  const [userData, setUserData] = useState({
+    username: '',
+    bio: '',
+    profilePicUrl: '',
+    walletAddress: ''
+  })
   const [imageLoaded, setImageLoaded] = useState(user.profilePicUrl || '')
   useEffect(() => {
     setUserData(user)
@@ -35,7 +39,7 @@ export default function ProfileEditView(props: { userApi: UserApi }) {
     <div className='flex flex-col gap-5 bg-purple-50 w-full rounded-lg p-6 sm:p-10 shadow-md'>
       <TextField
         label='Username'
-        value={userData.username}
+        value={userData.username || ''}
         required
         fullWidth
         className='bg-white'
@@ -48,7 +52,7 @@ export default function ProfileEditView(props: { userApi: UserApi }) {
       />
       <TextField
         label='Bio'
-        value={userData.bio}
+        value={userData.bio || ''}
         multiline
         rows={5}
         required
@@ -63,7 +67,7 @@ export default function ProfileEditView(props: { userApi: UserApi }) {
       />
       <TextField
         label='Profile pic'
-        value={imageLoaded}
+        value={imageLoaded || ''}
         onChange={(e) => {
           setUserData({
             ...userData,

@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 import Providers from "../components/Providers";
 import { WalletProvider } from '../components/WalletContext'
 
-import { ProfileViewProvider } from '@/components/UserProfileContext'
+import { ProfileProvider } from '@/components/UserProfileContext'
 
 export default async function RootLayout({
   children
@@ -21,7 +21,7 @@ export default async function RootLayout({
         <Providers cookie={cookie}>
           <WalletProvider>
             {' '}
-            <ProfileViewProvider>{children}</ProfileViewProvider>
+            <ProfileProvider>{children}</ProfileProvider>
           </WalletProvider>
         </Providers>
       </body>
