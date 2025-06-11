@@ -12,6 +12,7 @@ import { formatTimestamp, snakeToCamel } from '@/lib/utils'
 import { useProfileView } from '@/components/UserProfileContext'
 
 import { useParams } from 'next/navigation'
+import CommentsList from './CommentList'
 
 export default function PostDetail() {
   const params = useParams()
@@ -63,9 +64,8 @@ export default function PostDetail() {
 
   const addComment = async () => {
     try {
-      await axios.post('http://localhost:3001/comments', {
+      await axios.post(`http://localhost:3001/posts/${post.id}/comment`, {
         wallet_address: currentUser.walletAddress,
-        post_id: post.id,
         content: newComment,
         timeStamp: new Date().toISOString()
       })
@@ -151,38 +151,7 @@ export default function PostDetail() {
         )}
 
         {/* Comments Section */}
-        <div className='flex flex-col gap-4'>
-          <h2 className='text-lg font-bold border-b pb-2 text-gray-800'>
-            Comments ({post.comments.length})
-          </h2>
-          {post.comments.map((comment, index) => (
-            <div
-              key={index}
-              className='flex flex-col gap-2 px-4 py-3 rounded-lg bg-purple-50'
-            >
-              <div className='flex items-center gap-3'>
-                <Avatar className='w-10 h-10'>
-                  <img
-                    src={comment.user.profilePicUrl}
-                    alt='User'
-                    className='w-full h-full object-cover'
-                  />
-                </Avatar>
-                <div>
-                  <div className='text-sm font-semibold text-gray-800'>
-                    {comment.user.username}
-                  </div>
-                  {comment.timestamp && (
-                    <div className='text-xs text-gray-500'>
-                      {formatTimestamp(comment.timestamp)}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <p className='pl-12 text-gray-700 text-sm'>{comment.content}</p>
-            </div>
-          ))}
-        </div>
+        <CommentsList comments={post.comments}></CommentsList>
       </div>
     </div>
   )

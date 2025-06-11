@@ -1,6 +1,6 @@
 'use client'
 
-import { User, UserApi } from '@/lib/types/Types'
+import { UserApi } from '@/lib/types/Types'
 
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
