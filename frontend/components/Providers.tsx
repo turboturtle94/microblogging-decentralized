@@ -23,11 +23,11 @@ export default function Providers({ children, cookie }: Props) {
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider
             theme={darkTheme({
-              accentColor: "#0E76FD",
-              accentColorForeground: "white",
-              borderRadius: "large",
-              fontStack: "system",
-              overlayBlur: "small",
+              accentColor: '#AD45FF',
+              accentColorForeground: 'white',
+              borderRadius: 'large',
+              fontStack: 'system',
+              overlayBlur: 'small'
             })}
           >
             {children}
@@ -35,5 +35,5 @@ export default function Providers({ children, cookie }: Props) {
         </QueryClientProvider>
       </WagmiProvider>
     </AppRouterCacheProvider>
-  );
+  )
 }

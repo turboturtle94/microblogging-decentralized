@@ -4,20 +4,21 @@ import { http, createStorage, cookieStorage } from "wagmi";
 import { localhost } from 'wagmi/chains'
 import { Chain, getDefaultConfig } from "@rainbow-me/rainbowkit";
 
-const projectId = "d3eebde7d134899cbc202cb7bf37071c";
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID!
+const url = process.env.NEXT_PUBLIC_RPC_URL!
 
 const supportedChains: Chain[] = [localhost];
 
 export const config = getDefaultConfig({
-  appName: "Microblogger",
+  appName: 'Microblogger',
   projectId,
   chains: supportedChains as any,
   ssr: true,
   storage: createStorage({
-    storage: cookieStorage,
+    storage: cookieStorage
   }),
   transports: supportedChains.reduce(
-    (obj, chain) => ({ ...obj, [chain.id]: http("http://127.0.0.1:8545") }),
+    (obj, chain) => ({ ...obj, [chain.id]: http(url) }),
     {}
-  ),
-});
+  )
+})

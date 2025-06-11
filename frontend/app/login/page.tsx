@@ -1,3 +1,7 @@
+/**
+ * This is the login page where users see either a Connect button or a Sign button depending on their connection status with their wallet.
+ */
+
 'use client'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
@@ -18,12 +22,11 @@ export default function Login() {
   const { signMessageAsync } = useSignMessage()
 
   const [loginStatus, setLoginStatus] = useState<number>(1)
-  const [jwt, setJwt] = useState<string | null>(null)
 
   useEffect(() => {
     const loginStatus = getLoginStatus()
     setLoginStatus(loginStatus)
-  }, [isConnected, jwt])
+  }, [isConnected])
 
   const getLoginStatus = () => {
     if (!isConnected) {
